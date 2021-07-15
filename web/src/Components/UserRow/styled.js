@@ -1,10 +1,16 @@
 import styled from 'styled-components';
+import {light, dark, cadetGray, blueGreen} from '../../Colors'
 
 export const UserRow = styled.div`
-    width: 60%;
+    width: 50%;
     display: inline-flex;
     padding: 10px;
     border: 1px solid black;
+    margin: auto;
+    border-radius: 14px;
+    background-color: ${blueGreen};
+    color: ${dark};
+
 
 `
 export const DataContainer = styled.div`
@@ -14,7 +20,7 @@ export const DataContainer = styled.div`
 export const ButtonContainer = styled.div`
     width: 20%;
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-end;
     align-items: center;
 
     

@@ -1,39 +1,26 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import * as S from './styled';
 
-//COMPONENTS
-import UserRow from "./Components/UserRow";
-import UserForm from './Components/UserForm';
+//PAGES
+import ListUsers from './Pages/ListUsers';
+import EditUsers from './Pages/EditUser';
+import AddUser from './Pages/EditUser';
+import UserAPIController from './Services/userAPIController';
 
 
 function App() {
 
-  const [listUsers, setListUsers] = useState([]);
-  const [searchUsers, setSearchUsers] = useState(true);
-
-  function getUsers() {
-    axios.get('http://localhost:3333/users')
-      .then(response => {
-        setListUsers(response.data)
-        setSearchUsers(false)
-      })
-      .catch(error => {
-        console.log(error)
-      })
-  }
-
-  useEffect(()=>{
-    if(searchUsers === true) getUsers();
-  },[searchUsers])
 
   return (
-    
-    <>
-      <UserForm setSearchUsers={setSearchUsers}/>
-      {listUsers.map((elem) => {
-        return <UserRow key={elem._id}  id={elem._id} name={elem.name} email={elem.email} age={elem.age} setSearchUsers={setSearchUsers}/>
-      })}
-    </>
+
+    <BrowserRouter>
+      <Switch>
+        <Route path="/" exact component={ListUsers} />
+        <Route path="/edit-user" exact component={EditUsers} />
+        <Route path="/edit-user" exact component={AddUser} />
+      </Switch>
+    </BrowserRouter>
+
   );
 }
 

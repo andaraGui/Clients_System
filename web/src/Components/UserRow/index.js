@@ -1,8 +1,7 @@
 import * as S from './styled';
 
 //COMPONENTS
-import DeleteButton from '../DeleteButton';
-import EditButton from '../EditButton';
+import Button from '../Button';
 
 export default function UserRow({ name, email, age, id , setSearchUsers}) {
 
@@ -13,8 +12,8 @@ export default function UserRow({ name, email, age, id , setSearchUsers}) {
                     Nome:{name} Email:{email} Idade:{age} id:{id}
                 </S.DataContainer>
                 <S.ButtonContainer>
-                    <EditButton userName={name} userId={id} setSearchUsers={setSearchUsers}/> 
-                    <DeleteButton userName={name} userId={id} setSearchUsers={setSearchUsers}/>
+                    <Button userName={name} userId={id} setSearchUsers={setSearchUsers}/> 
+                    <Button userName={name} userId={id} setSearchUsers={setSearchUsers}/>
                 </S.ButtonContainer>
             </S.UserRow>
 
