@@ -3,6 +3,7 @@ import axios from 'axios';
 
 //COMPONENTS
 import UserRow from "./Components/UserRow";
+import UserForm from './Components/UserForm';
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
   return (
     
     <>
+      <UserForm setSearchUsers={setSearchUsers}/>
       {listUsers.map((elem) => {
         return <UserRow key={elem._id}  id={elem._id} name={elem.name} email={elem.email} age={elem.age} setSearchUsers={setSearchUsers}/>
       })}
