@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import userAPI from "../../Services/API";
+import * as S from './styled';
 
 //COMPONENTS
 import UserRow from '../../Components/UserRow';
@@ -11,7 +12,7 @@ export default function ListUsers() {
     const [searchUsers, setSearchUsers] = useState(true);
     const [usersList, setUsersList] = useState([]);
     const [addUserIsVisible, setAddUserIsVisible] = useState([false])
-    
+
 
     function getUsers() {
         userAPI.get('/')
@@ -25,21 +26,23 @@ export default function ListUsers() {
 
     useEffect(() => {
         if (searchUsers === true) {
-            getUsers();           
+            getUsers();
             setSearchUsers(false);
         }
-        
+
     }, [searchUsers]);
 
     return (
         <>
-            {addUserIsVisible === true ? <AddUserForm setAddUserIsVisible={setAddUserIsVisible} setSearchUsers={setSearchUsers}/> :   <Button buttonContent={'Adicionar usuário'} buttonFunction={() => setAddUserIsVisible(true)} />} 
-          
-            <ul>
-                {usersList.map( (elem, index) =>{
-                    return <li  key={index} > < UserRow name={elem.name} email={elem.email} age={elem.age} id={elem._id} setSearchUsers={setSearchUsers} /> </li>
-                })}
-            </ul>
+            {addUserIsVisible === true ? <AddUserForm setAddUserIsVisible={setAddUserIsVisible} setSearchUsers={setSearchUsers} /> : <Button buttonContent={'Adicionar usuário'} buttonFunction={() => setAddUserIsVisible(true)} />}
+            <S.TableContainer>
+                
+                    {usersList.map((elem, index) => {
+                       
+                        return  < UserRow key={index} name={elem.name} email={elem.email} age={elem.age} id={elem._id} setSearchUsers={setSearchUsers} />
+                    })}
+               
+            </S.TableContainer>
         </>
     );
 }

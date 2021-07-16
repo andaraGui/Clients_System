@@ -4,6 +4,8 @@ import EditUserForm from '../EditUserForm';
 
 import userAPI from '../../Services/API';
 
+import * as S from './styled';
+
 export default function UserRow({ name, email, age, id, setSearchUsers }) {
 
     const [showForm, setShowForm] = useState(false);
@@ -14,27 +16,30 @@ export default function UserRow({ name, email, age, id, setSearchUsers }) {
 
     async function deleteUser() {
         await userAPI.delete(id)
-            .then(response =>{
+            .then(response => {
                 alert(`Usuário ${response.name} excluido com sucesso!`)
             })
-            .catch(error =>{
+            .catch(error => {
                 console.log(error);
             })
-            
-            setSearchUsers(true);
-            
+
+        setSearchUsers(true);
+
     }
 
 
     return (
-        <>
-            Nome:{name} Email:{email} age:{age} id={id}
-            {showForm ? <EditUserForm name={name} email={email} age={age} id={id} setShowForm={setShowForm} setSearchUsers={setSearchUsers}/> :
-            <>
-            <Button buttonContent={'Editar'} buttonFunction={editUser} />
-            <Button buttonContent={'Deletar'} buttonFunction={deleteUser} />
-            </>
+        <S.UserRow>
+            <S.DataContainer>
+                <span>Nome:{name} Email:{email} age:{age} </span>
+            </S.DataContainer>
+            {showForm ?
+                <EditUserForm name={name} email={email} age={age} setShowForm={setShowForm} setSearchUsers={setSearchUsers} />
+                :<S.ButtonsContainer>
+                    <Button buttonContent={'Editar'} buttonFunction={editUser} />
+                    <Button buttonContent={'Deletar'} buttonFunction={deleteUser} />
+                </S.ButtonsContainer>
             }
-        </>
+        </S.UserRow>
     );
 }
