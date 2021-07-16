@@ -11,7 +11,6 @@ function App() {
     <BrowserRouter>
       <Switch>
         <Route path="/" exact component={ListUsers} />
-        {/* <Route path="/edit-user" exact component={EditUsers} /> */}
         {/* <Route path="/add-user" exact component={AddUser} /> */}
       </Switch>
     </BrowserRouter>

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"; 
+import { useState } from "react"; 
 import userAPI from "../../Services/API";
 import Button from "../Button";
 
@@ -11,7 +11,7 @@ export default function UserForm({name, email, age, id, setShowForm, setSearchUs
 
   async function temp(event){
         event.preventDefault()
-        await userAPI.put(`/${id}`, {name:tempName, email: tempEmail, age: tempAge})
+       await userAPI.put(`/${id}`, {name:tempName, email: tempEmail, age: tempAge})
             .then(response=>{
                 console.log(response)
             })
