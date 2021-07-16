@@ -1,26 +1,38 @@
 import UserRow from '../../Components/UserRow';
 import { useState, useEffect } from 'react';
+import * as S from './styled'
 
 //API
-import userAPIController from '../../Services/userAPIController';
+import userAPI from '../../Services/API';
 
 export default function ListUsers() {
 
-    const [refreshUsers, setRefreshUsers] = useState(true);
+    const [userData, setUserData] = useState([]);
+    const [searchUsers, setSearchUsers] = useState(true);
 
-    useEffect(async () => {
-            if (refreshUsers === true) {
-                let teste = []
-                teste = userAPIController.findAllUsers(teste);
-                await teste
-                console.log(teste)
-            }
 
-    }, [refreshUsers]);
+    function getUsers() {
+        userAPI.get('/')
+            .then(response => {
+                setUserData(response.data)
+            })
+            .catch(error => {
+                console.log(error)
+            })
+        setSearchUsers(false);
+    }
+
+    useEffect(() => {
+        if (searchUsers === true) {
+            getUsers();
+        }
+    }, [searchUsers]);
 
     return (
-        <>
-            <UserRow />
-        </>
+        <S.Table>
+            {userData.map((elem, index) => {
+                return <UserRow key={index} id={elem._id} name={elem.name} email={elem.email} age={elem.age} setSearchUsers={setSearchUsers} />
+            })}
+        </S.Table>
     );
 }

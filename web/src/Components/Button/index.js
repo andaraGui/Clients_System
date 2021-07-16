@@ -1,9 +1,9 @@
-export default function Button() {
+export default function Button({buttonText, buttonFunction}) {
 
 
     return (
         <>
-            <button onClick={'oie'} >Botão</button>
+            <button onClick={buttonFunction}> {buttonText} </button>
         </>
     );
 }

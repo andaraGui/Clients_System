@@ -5,7 +5,6 @@ import * as S from './styled';
 import ListUsers from './Pages/ListUsers';
 import EditUsers from './Pages/EditUser';
 import AddUser from './Pages/EditUser';
-import UserAPIController from './Services/userAPIController';
 
 
 function App() {
