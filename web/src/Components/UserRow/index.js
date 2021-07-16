@@ -1,41 +1,29 @@
-import * as S from './styled';
-
-//COMPONENTS
+import { useState, useEffect } from 'react'
 import Button from '../Button';
-//API
-import userAPI from '../../Services/API';
+import UserForm from '../UserForm';
 
+export default function UserRow({ name, email, age, id, setSearchUsers }) {
 
-export default function UserRow({ name, email, age, id , setSearchUsers}) {
+    const [showForm, setShowForm] = useState(false);
 
-
-    function editUser(){
-        console.log('editar')
+    function editUser() {
+        setShowForm(true);
     }
 
-    async function deleteUser(){
-        await userAPI.delete(`/${id}`)
-            .then(response =>{
-                console.log(response.data);
-            })
-            .catch(error =>{
-                console.log(error)
-            })
-        setSearchUsers(true);
+    function deleteUser() {
+        console.log('delete')
     }
+
 
     return (
         <>
-            <S.UserRow>
-                <S.DataContainer>
-                    Nome:{name} Email:{email} Idade:{age} id:{id}
-                </S.DataContainer>
-                <S.ButtonContainer>
-                    <Button  buttonText={'Editar'}     buttonFunction={editUser} userName={name} userId={id} setSearchUsers={setSearchUsers}/> 
-                    <Button  buttonText={'Deletar'}    buttonFunction={deleteUser} userName={name} userId={id} setSearchUsers={setSearchUsers}/>
-                </S.ButtonContainer>
-            </S.UserRow>
-
+            Nome:{name} Email:{email} age:{age} id={id}
+            {showForm ? <UserForm name={name} email={email} age={age} id={id} setShowForm={setShowForm} setSearchUsers={setSearchUsers}/> :
+            <>
+            <Button buttonContent={'Editar'} buttonFunction={editUser} />
+            <Button buttonContent={'Deletar'} buttonFunction={deleteUser} />
+            </>
+            }
         </>
     );
 }

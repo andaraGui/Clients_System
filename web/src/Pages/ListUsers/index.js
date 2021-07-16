@@ -1,38 +1,40 @@
-import UserRow from '../../Components/UserRow';
 import { useState, useEffect } from 'react';
-import * as S from './styled'
+import userAPI from "../../Services/API";
 
-//API
-import userAPI from '../../Services/API';
+//COMPONENTS
+import UserRow from '../../Components/UserRow';
+
 
 export default function ListUsers() {
-
-    const [userData, setUserData] = useState([]);
     const [searchUsers, setSearchUsers] = useState(true);
-
+    const [usersList, setUsersList] = useState([]);
+    
 
     function getUsers() {
         userAPI.get('/')
             .then(response => {
-                setUserData(response.data)
+                setUsersList(response.data);
             })
             .catch(error => {
-                console.log(error)
+                console.log(error);
             })
-        setSearchUsers(false);
     }
 
     useEffect(() => {
         if (searchUsers === true) {
-            getUsers();
+            getUsers();           
+            setSearchUsers(false);
         }
+        
     }, [searchUsers]);
 
     return (
-        <S.Table>
-            {userData.map((elem, index) => {
-                return <UserRow key={index} id={elem._id} name={elem.name} email={elem.email} age={elem.age} setSearchUsers={setSearchUsers} />
-            })}
-        </S.Table>
+        <>
+            <ul>
+                {usersList.map( (elem, index) =>{
+                    return <li> < UserRow key={index} name={elem.name} email={elem.email} age={elem.age} id={elem._id} setSearchUsers={setSearchUsers} /> </li>
+                })}
+            </ul>
+        </>
     );
 }

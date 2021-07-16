@@ -1,6 +1,6 @@
 
 
-export default function AddUser(){
+export default function Footer(){
     return(
         <>
         </>

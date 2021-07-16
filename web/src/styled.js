@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { light, dark, cadetGray, blueGreen } from './Colors';
+import { dark } from './Colors';
 
 
 

@@ -1,10 +1,6 @@
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import * as S from './styled';
-
 //PAGES
 import ListUsers from './Pages/ListUsers';
-import EditUsers from './Pages/EditUser';
-import AddUser from './Pages/EditUser';
 
 
 function App() {
@@ -15,8 +11,8 @@ function App() {
     <BrowserRouter>
       <Switch>
         <Route path="/" exact component={ListUsers} />
-        <Route path="/edit-user" exact component={EditUsers} />
-        <Route path="/edit-user" exact component={AddUser} />
+        {/* <Route path="/edit-user" exact component={EditUsers} /> */}
+        {/* <Route path="/add-user" exact component={AddUser} /> */}
       </Switch>
     </BrowserRouter>
 

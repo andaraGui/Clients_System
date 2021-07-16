@@ -1,33 +1,37 @@
-import * as S from './styled';
-import { useState } from 'react'
-import axios from 'axios';
-export default function UserForm({ setSearchUsers }) {
+import { useState, useEffect } from "react"; 
+import userAPI from "../../Services/API";
+import Button from "../Button";
 
-    const [name, setName] = useState('')
-    const [email, setEmail] = useState('');
-    const [age, setAge] = useState('');
 
-    function submitForm() {
-        axios.post('http://localhost:3333/users/adduser', { name, email, age })
-            .then(response => {
-                setSearchUsers(true);
-                alert('Usuário inserido com sucesso')
+export default function UserForm({name, email, age, id, setShowForm, setSearchUsers}){
+
+    const [tempName, setTempName] = useState(name);
+    const [tempEmail, setTempEmail] = useState(email);
+    const [tempAge, setTempAge] = useState(age);
+
+  async function temp(event){
+        event.preventDefault()
+        await userAPI.put(`/${id}`, {name:tempName, email: tempEmail, age: tempAge})
+            .then(response=>{
+                console.log(response)
             })
-            .catch(error => {
+            .catch(error =>{
                 console.log(error)
             })
+        setShowForm(false);
+        setSearchUsers(true);
+        
     }
-    
-    return (
+
+    return(
         <>
-            <form>
-                <ul>
-                    <li>nome: <input type="text" value={name} onChange={(e)=> setName(e.target.value)} name="name" placeholder="Digite seu nome" required /></li>
-                    <li>email <input type="email" value={email} onChange={(e)=> setEmail(e.target.value)} name="email" placeholder="Digite seu email" required /> </li>
-                    <li>age <input type="number" value={age} onChange={(e)=> setAge(e.target.value)} name="age" placeholder="Digite sua idade" required /></li>
-                    <button type="submit" onClick={submitForm}>Adicionar</button>
-                </ul>
-            </form>
+        <form>
+            Nome: <input type="text"   onChange={(e)=> setTempName(e.target.value)} value={tempName}/>
+            Email: <input type="email" onChange={(e)=> setTempEmail(e.target.value)} value={tempEmail} />
+            Age: <input type="number"  onChange={(e)=> setTempAge(e.target.value)} value={tempAge}/>
+        </form>
+            <Button buttonFunction={temp} buttonContent={'OK'}/>
+            <Button buttonFunction={()=> setShowForm(false)} buttonContent={'CANCEL'}/>        
         </>
     );
 }
