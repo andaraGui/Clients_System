@@ -1,14 +1,14 @@
 import styled from "styled-components";
 
 export const FormContainer = styled.tr`
-    td{
-    }
-
+    height: 100px;
+    border: 2px solid lightgray;
     button{
-        margin: 25px;
-        width: 50px;
+        width: 30px;
     }
 
-    input{
+    td{
+        padding: 10px;
     }
+
 `

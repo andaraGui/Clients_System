@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState} from 'react';
 import * as S from './styled';
 
 //Assets
@@ -6,13 +6,16 @@ import deleteIcon from '../../Assets/deleteIcon.png';
 import editIcon from '../../Assets/editIcon.png';
 import expandIcon from '../../Assets/expandIcon.png';
 
+//API
+import api from '../../services/api';
+
 //COMPONENTS
 import Button from '../Button';
 import EditForm from '../EditForm';
 
 
 
-export default function UserRow({ name, email, phone, index }) {
+export default function UserRow({ name, email, phone, id, setRefreshUsers }) {
 
 
     const [showEditForm, setShowEditForm] = useState(false)
@@ -23,24 +26,31 @@ export default function UserRow({ name, email, phone, index }) {
         }else{
             setShowEditForm(false);
         }
-        
     }
 
-    function buttonDelete() {
-
+    async function buttonDelete() {
+        await api.delete(`/${id}`)
+            .then(response =>{
+                console.log(response);
+            })
+            .catch(error =>{
+                console.log(error);
+            })
+            setRefreshUsers(true);
     }
+
     return (
         <>
-            <S.RowContainer key={index}>
+            <S.RowContainer >
                 <td><img src={`${expandIcon}`} />{name}</td>
                 <td>{email}</td>
                 <td>{phone}</td>
-                <td>
+                <td align="right">
                     <Button content={editIcon} color={'#6DDCFF'} buttonFunction={buttonEdit}/>
-                    <Button content={deleteIcon} color={'#FF5E5E'} />
+                    <Button content={deleteIcon} color={'#FF5E5E'} buttonFunction={buttonDelete}/>
                 </td>
             </S.RowContainer>
-            { showEditForm &&  <EditForm buttonFunction={buttonEdit} name={name} email={email} phone={phone} />}
+            { showEditForm &&  <EditForm buttonEdit={buttonEdit} name={name} email={email} phone={phone} id={id} setRefreshUsers={setRefreshUsers}  setShowEditForm={ setShowEditForm}/>}
         </>
     );
 }

@@ -1,51 +1,67 @@
+import {useState, useEffect} from 'react';
 import * as S from './styled';
+import {Link} from 'react-router-dom';
 
 //COMPONENTS
 import Button from '../../Components/Button';
+import UserRow from '../../Components/UserRow';
+
+//API
+import api from '../../services/api';
 
 //Assets
-import deleteIcon from '../../Assets/deleteIcon.png'
-import editIcon from '../../Assets/editIcon.png'
-import expandIcon from '../../Assets/expandIcon.png'
 import orderByIcon from '../../Assets/orderByIcon.png'
-import UserRow from '../../Components/UserRow';
-import EditForm from '../../Components/EditForm';
+
 
 export default function ListClients() {
 
-    const fakeData = [
-        {
-            name: 'Guilherme Andara',
-            email: 'gui@gui.com',
-            phone: '(51)99999-8888'
-        },
-        {
-            name: 'Jorge Andara',
-            email: 'Jorge@gui.com',
-            phone: '(51)99999-8888'
-        }
+    const [refreshUsers, setRefreshUsers] = useState(true);
+    const [usersData, setUsersData] = useState([]);
 
-    ]
+
+
+
+    function getUsers(){
+        api.get()
+            .then(response =>{
+                setUsersData(response.data)
+            })
+            .catch(error =>{
+                console.log(error);
+            })
+    }
+
+ 
+
+    useEffect(()=>{
+        if(refreshUsers === true){
+            getUsers();
+            setRefreshUsers(false);
+        }
+    },[refreshUsers]);
+
 
     return (
-        <>
+        <S.MainContainer>
             <h1>ListClients</h1>
+            <Link to='/add-user'> <button >ADDCLIENT</button></Link>
+           
             <S.UsersTable>
                 <tr>
-                    <th><img src={`${orderByIcon}`} />Name</th>
-                    <th><img src={`${orderByIcon}`} />Email</th>
-                    <th><img src={`${orderByIcon}`} />Telefone</th>
-                    <th></th>
+                    <th align="left"><img src={`${orderByIcon}`} />Name</th>
+                    <th align="left">Email</th>
+                    <th align="left">Telefone</th>
+                    <th ></th>
                 </tr>
-                {fakeData.map((elem, index) => {
+                {usersData.map((elem, index) => {
                     
                     return ( 
-                            <>                     
-                            <UserRow name={elem.name} email={elem.email} phone={elem.phone} index={index} />                         
-                            </>
+                                              
+                            <UserRow key={index} name={elem.name} email={elem.email} phone={elem.phone} id={elem._id} index={index} setRefreshUsers={setRefreshUsers}/>                         
+                           
                     );
                 })}
             </S.UsersTable>
-        </>
+            </S.MainContainer>
     );
 }

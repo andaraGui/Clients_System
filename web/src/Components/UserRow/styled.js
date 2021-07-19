@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const RowContainer = styled.tr`
 
-    background-color: lightgray;
     border: 2px solid darkgray;
         img{
             height: 13px;
