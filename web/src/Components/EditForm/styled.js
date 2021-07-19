@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const FormContainer = styled.tr`
     td{
-    padding: 30px;
     }
 
     button{
@@ -11,6 +10,5 @@ export const FormContainer = styled.tr`
     }
 
     input{
-        padding: 10px;
     }
 `

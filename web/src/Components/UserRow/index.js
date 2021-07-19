@@ -18,8 +18,12 @@ export default function UserRow({ name, email, phone, index }) {
     const [showEditForm, setShowEditForm] = useState(false)
 
     function buttonEdit() {
-        console.log('teste')
-        setShowEditForm(true);
+        if(showEditForm === false){
+            setShowEditForm(true);
+        }else{
+            setShowEditForm(false);
+        }
+        
     }
 
     function buttonDelete() {
@@ -36,7 +40,7 @@ export default function UserRow({ name, email, phone, index }) {
                     <Button content={deleteIcon} color={'#FF5E5E'} />
                 </td>
             </S.RowContainer>
-            { showEditForm &&  <EditForm />}
+            { showEditForm &&  <EditForm buttonFunction={buttonEdit} name={name} email={email} phone={phone} />}
         </>
     );
 }
