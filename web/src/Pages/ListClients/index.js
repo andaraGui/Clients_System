@@ -17,14 +17,12 @@ export default function ListClients() {
         {
             name: 'Guilherme Andara',
             email: 'gui@gui.com',
-            phone: '(51)99999-8888',
-            apointment: '10/10/21'
+            phone: '(51)99999-8888'
         },
         {
             name: 'Jorge Andara',
             email: 'Jorge@gui.com',
-            phone: '(51)99999-8888',
-            apointment: '07/08/21'
+            phone: '(51)99999-8888'
         }
 
     ]
@@ -37,14 +35,13 @@ export default function ListClients() {
                     <th><img src={`${orderByIcon}`} />Name</th>
                     <th><img src={`${orderByIcon}`} />Email</th>
                     <th><img src={`${orderByIcon}`} />Telefone</th>
-                    <th><img src={`${orderByIcon}`} />Próx. Consulta</th>
                     <th></th>
                 </tr>
                 {fakeData.map((elem, index) => {
                     
                     return ( 
                             <>                     
-                            <UserRow name={elem.name} email={elem.email} phone={elem.phone} apointment={elem.apointment} index={index} />                         
+                            <UserRow name={elem.name} email={elem.email} phone={elem.phone} index={index} />                         
                             </>
                     );
                 })}
