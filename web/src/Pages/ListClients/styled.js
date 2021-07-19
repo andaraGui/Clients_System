@@ -14,7 +14,9 @@ export const UsersTable = styled.table`
     border-collapse:collapse;
     margin: auto;
     margin-top: 50px;
-
+    tr{
+        border: 2px solid darkgray;
+    }
     th{
         background-color: darkgray;
         cursor: pointer;

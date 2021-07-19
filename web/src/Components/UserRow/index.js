@@ -1,4 +1,4 @@
-import { useState} from 'react';
+import { useState } from 'react';
 import * as S from './styled';
 
 //Assets
@@ -21,22 +21,25 @@ export default function UserRow({ name, email, phone, id, setRefreshUsers }) {
     const [showEditForm, setShowEditForm] = useState(false)
 
     function buttonEdit() {
-        if(showEditForm === false){
+        if (showEditForm === false) {
             setShowEditForm(true);
-        }else{
+        } else {
             setShowEditForm(false);
         }
     }
 
     async function buttonDelete() {
-        await api.delete(`/${id}`)
-            .then(response =>{
-                console.log(response);
-            })
-            .catch(error =>{
-                console.log(error);
-            })
-            setRefreshUsers(true);
+        if (window.confirm(`Você realmente excluir o usuário ${name} do sistema?`)) {
+            await api.delete(`/${id}`)
+                .then(response => {
+                    alert(`Usuário ${response.data.name} deletado com sucesso.`)
+                })
+                .catch(error => {
+                    console.log(error);
+                })
+        }
+
+        setRefreshUsers(true);
     }
 
     return (
@@ -46,11 +49,11 @@ export default function UserRow({ name, email, phone, id, setRefreshUsers }) {
                 <td>{email}</td>
                 <td>{phone}</td>
                 <td align="right">
-                    <Button content={editIcon} color={'#6DDCFF'} buttonFunction={buttonEdit}/>
-                    <Button content={deleteIcon} color={'#FF5E5E'} buttonFunction={buttonDelete}/>
+                    <Button content={editIcon} color={'#6DDCFF'} buttonFunction={buttonEdit} />
+                    <Button content={deleteIcon} color={'#FF5E5E'} buttonFunction={buttonDelete} />
                 </td>
             </S.RowContainer>
-            { showEditForm &&  <EditForm buttonEdit={buttonEdit} name={name} email={email} phone={phone} id={id} setRefreshUsers={setRefreshUsers}  setShowEditForm={ setShowEditForm}/>}
+            {showEditForm && <EditForm buttonEdit={buttonEdit} name={name} email={email} phone={phone} id={id} setRefreshUsers={setRefreshUsers} setShowEditForm={setShowEditForm} />}
         </>
     );
 }
