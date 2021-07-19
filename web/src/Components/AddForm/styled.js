@@ -6,6 +6,19 @@ export const FormContainer = styled.div`
     width: 60%;
     margin: auto;
     
+    button{
+        background-position: center;
+        background-size: 14px;
+        background-repeat: no-repeat;
+        width: 70px;
+        border-radius: 5px;
+        &:hover{
+            background-size: 16px;
+        }
+        &:active{
+            background-size: 14px;
+        }
+    }
     span{
         margin: 10px;
     }

@@ -5,6 +5,10 @@ import { Link, Redirect } from 'react-router-dom';
 //API
 import api from '../../services/api';
 
+//Assets
+import submitIcon from '../../Assets/confirme.png';
+import returnIcon from '../../Assets/retornar.png';
+
 export default function AddForm() {
 
     const [redirectHome, setRedirectHome] = useState(false);
@@ -31,8 +35,8 @@ export default function AddForm() {
                 <span>Email:</span><input type="email" placeholder="example@example.com" value={email} onChange={(e) => setEmail(e.target.value)} />
                 <span>Phone:</span><input type="tel" placeholder="(51)89987-8879" value={phone} onChange={(e) => setPhone(e.target.value)} />
                 <S.ButtonsContainer>
-                    <Link to='/'> <button >Voltar</button></Link>
-                    <button onClick={submitHandler} >Adicionar</button>
+                    <Link to='/'> <button style={{ backgroundColor: `${'#6DDCFF'}`, backgroundImage: `url(${returnIcon})` }}></button></Link>
+                    <button onClick={submitHandler} style={{ backgroundColor: `${'#38F69B'}`, backgroundImage: `url(${submitIcon})` }} ></button>
                 </S.ButtonsContainer>
                 {redirectHome && <Redirect to='/' />}
             </form>
