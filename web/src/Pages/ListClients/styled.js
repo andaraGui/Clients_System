@@ -3,12 +3,14 @@ import styled from 'styled-components';
 
 export const UsersTable = styled.table`
     width: 80%;
-    border: 2px solid black;
+    border-collapse:collapse;
 
-    tr,th, td{
-        border: 2px solid black;
+
+    th{
+        background-color: darkgray;
+        cursor: pointer;
+        padding: 8px;
     }
-
   
 `
 

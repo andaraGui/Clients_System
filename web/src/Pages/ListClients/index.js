@@ -1,6 +1,16 @@
 import * as S from './styled';
 
-export default function ListClients(){
+//COMPONENTS
+import Button from '../../Components/Button';
+
+//Assets
+import deleteIcon from '../../Assets/deleteIcon.png'
+import editIcon from '../../Assets/editIcon.png'
+import expandIcon from '../../Assets/expandIcon.png'
+import orderByIcon from '../../Assets/orderByIcon.png'
+import UserRow from '../../Components/UserRow';
+
+export default function ListClients() {
 
     const fakeData = [
         {
@@ -18,30 +28,23 @@ export default function ListClients(){
 
     ]
 
-    return(
+    return (
         <>
-        <h1>ListClients</h1>
-        <S.UsersTable>
-            <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Telefone</th>
-                <th>Próx. Consulta</th>
-                <th></th>
-            </tr>  
-            {fakeData.map((elem, index)=> {
-                return(
-                <tr key={index}>
-                    <td>{elem.name}</td>
-                    <td>{elem.email}</td>
-                    <td>{elem.phone}</td>
-                    <td>{elem.apointment}</td>
-                    <button>edit</button>
-                    <button>delet</button>
+            <h1>ListClients</h1>
+            <S.UsersTable>
+                <tr>
+                    <th><img src={`${orderByIcon}`} />Name</th>
+                    <th><img src={`${orderByIcon}`} />Email</th>
+                    <th><img src={`${orderByIcon}`} />Telefone</th>
+                    <th><img src={`${orderByIcon}`} />Próx. Consulta</th>
+                    <th></th>
                 </tr>
-                );
-            })}
-        </S.UsersTable>
+                {fakeData.map((elem, index) => {
+                    return ( 
+                            <UserRow name={elem.name} email={elem.email} phone={elem.phone} apointment={elem.apointment} index={index} />
+                    );
+                })}
+            </S.UsersTable>
         </>
     );
 }
