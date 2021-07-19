@@ -9,6 +9,7 @@ import editIcon from '../../Assets/editIcon.png'
 import expandIcon from '../../Assets/expandIcon.png'
 import orderByIcon from '../../Assets/orderByIcon.png'
 import UserRow from '../../Components/UserRow';
+import EditForm from '../../Components/EditForm';
 
 export default function ListClients() {
 
@@ -40,8 +41,11 @@ export default function ListClients() {
                     <th></th>
                 </tr>
                 {fakeData.map((elem, index) => {
+                    
                     return ( 
-                            <UserRow name={elem.name} email={elem.email} phone={elem.phone} apointment={elem.apointment} index={index} />
+                            <>                     
+                            <UserRow name={elem.name} email={elem.email} phone={elem.phone} apointment={elem.apointment} index={index} />                         
+                            </>
                     );
                 })}
             </S.UsersTable>
