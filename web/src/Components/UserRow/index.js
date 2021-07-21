@@ -45,7 +45,7 @@ export default function UserRow({ name, email, phone, id, setRefreshUsers }) {
     return (
         <>
             <S.RowContainer >
-                <td><img src={`${expandIcon}`} />{name}</td>
+                <td><img  alt="expand Icon" src={`${expandIcon}`} />{name}</td>
                 <td>{email}</td>
                 <td>{phone}</td>
                 <td align="right">

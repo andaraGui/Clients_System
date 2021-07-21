@@ -3,7 +3,6 @@ import * as S from './styled';
 import {Link} from 'react-router-dom';
 
 //COMPONENTS
-import Button from '../../Components/Button';
 import UserRow from '../../Components/UserRow';
 
 //API
@@ -47,12 +46,15 @@ export default function ListClients() {
             <Link to='/add-user'> <button >ADDCLIENT</button></Link>
            
             <S.UsersTable>
+                <thead>
                 <tr>
-                    <th align="left"><img src={`${orderByIcon}`} />Name</th>
+                    <th align="left"><img alt="filter icon" src={`${orderByIcon}`} />Name</th>
                     <th align="left">Email</th>
                     <th align="left">Telefone</th>
                     <th ></th>
                 </tr>
+                </thead>
+                <tbody>
                 {usersData.map((elem, index) => {
                     
                     return ( 
@@ -61,6 +63,7 @@ export default function ListClients() {
                            
                     );
                 })}
+                </tbody>
             </S.UsersTable>
             </S.MainContainer>
     );

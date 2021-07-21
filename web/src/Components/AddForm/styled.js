@@ -12,6 +12,7 @@ export const FormContainer = styled.div`
         background-repeat: no-repeat;
         width: 70px;
         border-radius: 5px;
+        cursor: pointer;
         &:hover{
             background-size: 16px;
         }
