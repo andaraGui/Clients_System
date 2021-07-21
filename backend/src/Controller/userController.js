@@ -13,21 +13,9 @@ class UserController {
             })
     }
 
-    //FIND ALL USERS METHOD
-    async findAllUsers(req, res) {
-        await userModel.find()
-            .then(response => {
-                res.status(200).json(response)
-            })
-            .catch(error => {
-                res.status(500).json({ message: `alguma coisa deu errado! ${error}` })
-            })
-    }
-
-    //FIND ONE USER BY ID METHOD
-    async findUserById(req, res) {
-        const id = req.params.id
-        await userModel.findOne({ _id: id })
+    //FIND ONE USER BY LOGIN METHOD
+    async findUserByLogin(req, res) {
+        await userModel.findOne()
             .then(response => {
                 res.status(200).json(response);
             })
