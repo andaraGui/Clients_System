@@ -15,7 +15,7 @@ export default function Login() {
                 alert(`Bem-vindo!`)
             })
             .catch(error => {
-                console.log(error);
+                alert(`Usuário e/ou senha inválido(s)`)
             })
     }
 

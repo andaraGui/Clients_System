@@ -1,6 +1,13 @@
 const { updateMany } = require('../Models/userModel');
 const userModel = require('../Models/userModel');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const dotenv = require('dotenv');
+
+
+dotenv.config({ path: 'config.env' });
+const secretToken = process.env.JWT_TOKEN;
+
 
 class UserController {
 
@@ -36,11 +43,13 @@ class UserController {
 
             const passwordMatch = await bcrypt.compare(password, user.password);
             
-            if (passwordMatch)
-            return res.status(200).json({ message: `Logged in` })
-            else
+            if (!passwordMatch)
             return res.status(400).json({ message: `Email e/ou Senha invalido(s)` })
-            
+
+            const token = jwt.sign({id: user._id },secretToken,{expiresIn:"1d"})
+                
+            return res.status(200).json(token)
+
         })
 
     }
