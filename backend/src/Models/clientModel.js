@@ -2,6 +2,10 @@ const mongoose = require('../Database/database');
 const Schema = mongoose.Schema;
 
 const clientSchema = new Schema({
+    user_id:{
+        type: String,
+        required: true,
+    },
     name: {
         type: String,
         required: true
