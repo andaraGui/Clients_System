@@ -1,17 +1,18 @@
 import { useState } from 'react';
-import api from '../../services/api';
+
+import {apiUsers} from '../../services/api';
 
 
 export default function Login() {
 
-    const [login, setLogin] = useState('');
-    const [senha, setSenha] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
-    function buttonHandler(e) {
+    async function buttonHandler(e) {
         e.preventDefault();
-        api.get(`/users`)
+        await apiUsers.post(`/auth`, {email: email, password: password})
             .then(response => {
-                console.log(response)
+                alert(`Bem-vindo!`)
             })
             .catch(error => {
                 console.log(error);
@@ -21,8 +22,8 @@ export default function Login() {
     return (
         <>
             <form>
-                Login: <input type="text" value={login} onChange={(e) => setLogin(e.target.value)} />
-                Senha: <input type="text" value={senha} onChange={(e) => setSenha(e.target.value)} />
+                Login: <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                Senha: <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
                 <button onClick={buttonHandler}>ENTRAR</button>
             </form>
         </>

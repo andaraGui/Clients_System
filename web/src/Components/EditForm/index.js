@@ -3,7 +3,7 @@ import Button from '../Button';
 import * as S from './styled';
 
 //API
-import api from '../../services/api';
+import {apiClients} from '../../services/api';
 
 //Assets
 import confirmIcon from '../../Assets/confirme.png';
@@ -16,7 +16,7 @@ export default function EditForm({ buttonEdit, name, email, phone, id, setRefres
     const [tempPhone, setTempPhone] = useState(phone);
 
     async function submitForm() {
-        await api.put(`/${id}`, { name: tempName, email: tempEmail, phone: tempPhone })
+        await apiClients.put(`/${id}`, { name: tempName, email: tempEmail, phone: tempPhone })
             .then(response => {
                 alert(`Usuário ${tempName} editado com sucesso!`)
             })

@@ -6,7 +6,7 @@ import {Link} from 'react-router-dom';
 import UserRow from '../../Components/UserRow';
 
 //API
-import api from '../../services/api';
+import {apiClients} from '../../services/api';
 
 //Assets
 import orderByIcon from '../../Assets/orderByIcon.png'
@@ -21,7 +21,7 @@ export default function ListClients() {
 
 
     function getUsers(){
-        api.get()
+        apiClients.get('/')
             .then(response =>{
                 setUsersData(response.data)
             })

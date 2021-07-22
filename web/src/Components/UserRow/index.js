@@ -7,7 +7,7 @@ import editIcon from '../../Assets/editIcon.png';
 import expandIcon from '../../Assets/expandIcon.png';
 
 //API
-import api from '../../services/api';
+import {apiClients} from '../../services/api';
 
 //COMPONENTS
 import Button from '../Button';
@@ -30,7 +30,7 @@ export default function UserRow({ name, email, phone, id, setRefreshUsers }) {
 
     async function buttonDelete() {
         if (window.confirm(`Você realmente excluir o usuário ${name} do sistema?`)) {
-            await api.delete(`/${id}`)
+            await apiClients.delete(`/${id}`)
                 .then(response => {
                     alert(`Usuário ${response.data.name} deletado com sucesso.`)
                 })
