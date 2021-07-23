@@ -40,11 +40,13 @@ export default function Login({ setLoggedIn, loggedIn }) {
             .then(response => {
                 alert(`Logged in`);
                 localStorage.setItem("token", response.data.token);
+                setLoggedIn(true);
             })
             .catch(error => {
+                console.log(error)
                 alert(`Usuário e/ou senha inválido(s)`)
             })
-        setLoggedIn(true);
+       
     }
 
     return (
