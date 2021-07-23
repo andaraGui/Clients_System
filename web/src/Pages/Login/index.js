@@ -12,7 +12,7 @@ export default function Login() {
         e.preventDefault();
         await apiUsers.post(`/auth`, {email: email, password: password})
             .then(response => {
-                alert(`Bem-vindo!`)
+                console.log(response.data);
             })
             .catch(error => {
                 alert(`Usuário e/ou senha inválido(s)`)

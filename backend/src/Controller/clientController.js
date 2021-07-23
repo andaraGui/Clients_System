@@ -1,8 +1,8 @@
 const clientModel = require('../Models/clientModel');
 
-class UserController {
+class ClientController {
 
-    //ADD USER METHOD
+    //ADD CLIENT METHOD
     async addClient(req, res) {
         await clientModel.insertMany({ name: req.body.name, email: req.body.email, phone: req.body.phone, user_id: req.user_id })
             .then(response => {
@@ -13,7 +13,7 @@ class UserController {
             })
     }
 
-    //FIND ALL USERS METHOD
+    //FIND ALL CLIENTS METHOD
     async findAllClients(req, res) {
         await clientModel.find({ "user_id": { $in: [req.user_id] } })
             .then(response => {
@@ -24,20 +24,20 @@ class UserController {
             })
     }
 
-    //FIND ONE USER BY ID METHOD
+    //FIND ONE CLIENT BY ID METHOD
     async findClientById(req, res) {
         const id = req.params.id
         await clientModel.findOne({ _id: id })
             .then(response => {
-                if (response.user_id === req.user_id) {
-                    res.status(200).json(response);
+                if (response.user_id !== req.user_id) {
+                    return res.status(400).json({ message: `Usuário não autorizado. ERROR:${error}` })
                 } else {
-                    res.status(500).json({ message: `Usuário não autorizado. ERROR:${error}` })
+                    return res.status(200).json(response);
                 }
 
             })
             .catch(error => {
-                res.status(500).json({ message: `alguma coisa deu errado! ERROR:${error}` })
+                res.status(500).json({ message: `Usuário não autorizado e/ou Cliente não existe. ERROR:${error}` })
             })
     }
 
@@ -53,7 +53,7 @@ class UserController {
             })
     }
 
-    //UPDATEUSER BY ID METHOD
+    //UPDATE CLIENT BY ID METHOD
     async updateClient(req, res) {
         const id = req.params.id
         await clientModel.findByIdAndUpdate(id, req.body, { new: true, useFindAndModify: false })
@@ -67,4 +67,4 @@ class UserController {
 
 }
 
-module.exports = new UserController();
+module.exports = new ClientController();

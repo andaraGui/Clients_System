@@ -31,10 +31,11 @@ class UserController {
 
     }
 
-    //FIND ONE USER BY EMAIL METHOD
+    //LOGIN HANDLER
     async LoginHandler(req, res) {
         const email = req.body.email;
         const password = req.body.password;
+        
         await userModel.findOne({ email: email }, 'password').exec(async (err, user) => {
             if (err)
                 return res.status(500).json({ message: `alguma coisa deu errado! ${error}` })
@@ -47,7 +48,6 @@ class UserController {
             return res.status(400).json({ message: `Email e/ou Senha invalido(s)` })
 
             const token = jwt.sign({id: user._id },secretToken,{expiresIn:"1d"})
-                
             return res.status(200).json(token)
 
         })
