@@ -3,7 +3,7 @@ import * as S from './styled';
 import { Link, Redirect } from 'react-router-dom';
 
 //API
-import {apiClients} from '../../services/api';
+import { apiClients } from '../../services/api';
 
 //Assets
 import submitIcon from '../../Assets/confirme.png';
@@ -17,8 +17,12 @@ export default function AddForm() {
     const [phone, setPhone] = useState('');
 
     async function submitHandler(event) {
+        const headers = {
+            'Content-Type': 'application/json',
+            'Authorization': `${localStorage.getItem('token')}`
+        }
         event.preventDefault();
-        await apiClients.post('/', { name: name, email: email, phone: phone })
+        await apiClients.post('/', { name: name, email: email, phone: phone }, { headers: headers })
             .then(response => {
                 alert(`Usuário ${name} inserido com sucesso!`)
             })

@@ -11,9 +11,6 @@ import Login from './Pages/Login';
 function App() {
 
   const [loggedIn, setLoggedIn] = useState(false);
-  const [token, setToken] = useState('');
-
-
 
   return (
     <>
@@ -24,7 +21,7 @@ function App() {
           
           <Route path="/" exact component={ListClients} />
           <Route path="/add-user" exat component={AddClient} />
-          <Route path="/login" exat component={Login} />
+          <Route path="/login" exat component={Login}><Login setLoggedIn={setLoggedIn} loggedIn={loggedIn}/> </Route> 
         </Switch>
       </BrowserRouter>
 

@@ -3,7 +3,7 @@ import Button from '../Button';
 import * as S from './styled';
 
 //API
-import {apiClients} from '../../services/api';
+import { apiClients } from '../../services/api';
 
 //Assets
 import confirmIcon from '../../Assets/confirme.png';
@@ -16,7 +16,11 @@ export default function EditForm({ buttonEdit, name, email, phone, id, setRefres
     const [tempPhone, setTempPhone] = useState(phone);
 
     async function submitForm() {
-        await apiClients.put(`/${id}`, { name: tempName, email: tempEmail, phone: tempPhone })
+        const headers = {
+            'Content-Type': 'application/json',
+            'Authorization': `${localStorage.getItem('token')}`
+        }
+        await apiClients.put(`/${id}`, { name: tempName, email: tempEmail, phone: tempPhone }, { headers: headers })
             .then(response => {
                 alert(`Usuário ${tempName} editado com sucesso!`)
             })
@@ -29,7 +33,7 @@ export default function EditForm({ buttonEdit, name, email, phone, id, setRefres
 
 
     return (
-        
+
         <S.FormContainer >
             <td>Name: <br /><input type="text" value={tempName} onChange={(e) => setTempName(e.target.value)} required /></td>
             <td>Email:<br /><input type="email" value={tempEmail} onChange={(e) => setTempEmail(e.target.value)} /> </td>

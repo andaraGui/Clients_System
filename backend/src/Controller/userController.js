@@ -19,7 +19,7 @@ class UserController {
             .then(async (hashedPassword) => {
                 await userModel.insertMany({ email: email, password: hashedPassword, name: name })
                     .then(response => {
-                        res.status(200).json({message: `Dados inseridos na database com sucesso!`});
+                        res.status(200).json({ message: `Dados inseridos na database com sucesso!` });
                     })
                     .catch(error => {
                         res.status(500).json({ message: `alguma coisa deu errado durante a inserção dos dados na Database! ERROR: ${error}` });
@@ -35,7 +35,7 @@ class UserController {
     async LoginHandler(req, res) {
         const email = req.body.email;
         const password = req.body.password;
-        
+
         await userModel.findOne({ email: email }, 'password').exec(async (err, user) => {
             if (err)
                 return res.status(500).json({ message: `alguma coisa deu errado! ${error}` })
@@ -43,12 +43,12 @@ class UserController {
                 return res.status(400).json({ message: `Email e/ou Senha invalido(s)` })
 
             const passwordMatch = await bcrypt.compare(password, user.password);
-            
-            if (!passwordMatch)
-            return res.status(400).json({ message: `Email e/ou Senha invalido(s)` })
 
-            const token = jwt.sign({id: user._id },secretToken,{expiresIn:"1d"})
-            return res.status(200).json(token)
+            if (!passwordMatch)
+                return res.status(400).json({ message: `Email e/ou Senha invalido(s)` })
+
+            const token = jwt.sign({ id: user._id }, secretToken, { expiresIn: "1d" })
+            res.status(200).json({token})
 
         })
 

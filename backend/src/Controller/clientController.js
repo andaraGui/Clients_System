@@ -3,6 +3,7 @@ const clientModel = require('../Models/clientModel');
 class ClientController {
 
     //ADD CLIENT METHOD
+    
     async addClient(req, res) {
         await clientModel.insertMany({ name: req.body.name, email: req.body.email, phone: req.body.phone, user_id: req.user_id })
             .then(response => {
@@ -56,7 +57,7 @@ class ClientController {
     //UPDATE CLIENT BY ID METHOD
     async updateClient(req, res) {
         const id = req.params.id
-        await clientModel.findByIdAndUpdate(id, req.body, { new: true, useFindAndModify: false })
+        await clientModel.findByIdAndUpdate(id, req.body, { new: true , useFindAndModify: false })
             .then(response => {
                 res.status(200).json(response)
             })

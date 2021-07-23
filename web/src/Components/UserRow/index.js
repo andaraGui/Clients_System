@@ -7,7 +7,7 @@ import editIcon from '../../Assets/editIcon.png';
 import expandIcon from '../../Assets/expandIcon.png';
 
 //API
-import {apiClients} from '../../services/api';
+import { apiClients } from '../../services/api';
 
 //COMPONENTS
 import Button from '../Button';
@@ -29,8 +29,13 @@ export default function UserRow({ name, email, phone, id, setRefreshUsers }) {
     }
 
     async function buttonDelete() {
+        const headers = {
+            'Content-Type': 'string',
+            'Authorization': `${localStorage.getItem('token')}`
+        }
         if (window.confirm(`Você realmente excluir o usuário ${name} do sistema?`)) {
-            await apiClients.delete(`/${id}`)
+
+            await apiClients.delete(`/${id}`, { headers: headers })
                 .then(response => {
                     alert(`Usuário ${response.data.name} deletado com sucesso.`)
                 })
@@ -45,7 +50,7 @@ export default function UserRow({ name, email, phone, id, setRefreshUsers }) {
     return (
         <>
             <S.RowContainer >
-                <td><img  alt="expand Icon" src={`${expandIcon}`} />{name}</td>
+                <td><img alt="expand Icon" src={`${expandIcon}`} />{name}</td>
                 <td>{email}</td>
                 <td>{phone}</td>
                 <td align="right">
