@@ -24,7 +24,6 @@ export default function Login({ setLoggedIn, loggedIn }) {
             })
         await apiUsers.post(`/auth`, { email: registerEmail, password: registerPassword })
             .then(response => {
-                alert(`Logged in`);
                 localStorage.setItem("token", response.data.token);
             })
             .catch(error => {
