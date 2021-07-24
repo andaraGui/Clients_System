@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import { darkBlue, lightBlue } from '../../Colors/colors';
+
 
 export const MainContainer = styled.div`
     width: 100%;
@@ -8,20 +10,28 @@ export const MainContainer = styled.div`
     align-items: center;
 `
 
+
 export const UsersTable = styled.table`
-    
-    width: 80%;
+    font-family: 'roboto', 'sans-serif';
+    width: 90%;
     border-collapse:collapse;
     margin: auto;
-    margin-top: 50px;
     tr{
-        border: 2px solid darkgray;
+        border: 2px solid ${lightBlue};
+        #editForm{
+        background-color: red;
+        }
     }
     th{
-        background-color: darkgray;
+        background-color: ${lightBlue};
+        color: white;
         cursor: pointer;
         padding: 8px;
         width: 30%;
+    }
+    td{
+        padding: 4px;
+        background-color: white;
     }
   
 `

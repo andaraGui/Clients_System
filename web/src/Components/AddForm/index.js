@@ -34,10 +34,11 @@ export default function AddForm() {
 
     return (
         <S.FormContainer>
+            <h1>Adicionar usuário</h1>
             <form>
-                <span>Nome:</span><input type="text" placeholder="João da Silva" value={name} onChange={(e) => setName(e.target.value)} />
-                <span>Email:</span><input type="email" placeholder="example@example.com" value={email} onChange={(e) => setEmail(e.target.value)} />
-                <span>Phone:</span><input type="tel" placeholder="(51)89987-8879" value={phone} onChange={(e) => setPhone(e.target.value)} />
+                <input type="text" placeholder="Nome" value={name} onChange={(e) => setName(e.target.value)} />
+                <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                <input type="tel" placeholder="Telefone" value={phone} onChange={(e) => setPhone(e.target.value)} />
                 <S.ButtonsContainer>
                     <Link to='/'> <button style={{ backgroundColor: `${'#6DDCFF'}`, backgroundImage: `url(${returnIcon})` }}></button></Link>
                     <button onClick={submitHandler} style={{ backgroundColor: `${'#38F69B'}`, backgroundImage: `url(${submitIcon})` }} ></button>

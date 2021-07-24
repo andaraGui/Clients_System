@@ -48,27 +48,26 @@ export default function ListClients() {
         <S.MainContainer>
             <h1>ListClients</h1>
             <Link to='/add-user'> <button >ADDCLIENT</button></Link>
+                <S.UsersTable>
+                    <thead>
+                        <tr>
+                            <th align="left"><img alt="filter icon" src={`${orderByIcon}`} />Name</th>
+                            <th align="left">Email</th>
+                            <th align="left">Telefone</th>
+                            <th ></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {usersData.map((elem, index) => {
 
-            <S.UsersTable>
-                <thead>
-                    <tr>
-                        <th align="left"><img alt="filter icon" src={`${orderByIcon}`} />Name</th>
-                        <th align="left">Email</th>
-                        <th align="left">Telefone</th>
-                        <th ></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {usersData.map((elem, index) => {
+                            return (
 
-                        return (
+                                <UserRow key={index} name={elem.name} email={elem.email} phone={elem.phone} id={elem._id} index={index} setRefreshUsers={setRefreshUsers} />
 
-                            <UserRow key={index} name={elem.name} email={elem.email} phone={elem.phone} id={elem._id} index={index} setRefreshUsers={setRefreshUsers} />
-
-                        );
-                    })}
-                </tbody>
-            </S.UsersTable>
+                            );
+                        })}
+                    </tbody>
+                </S.UsersTable>
         </S.MainContainer>
     );
 }

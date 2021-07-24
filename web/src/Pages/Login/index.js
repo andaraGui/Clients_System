@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { Redirect } from 'react-router-dom'
 import { apiUsers } from '../../services/api';
-import * as S from './styled';
 
+//Style
+import * as S from './styled';
+import { darkBlue } from '../../Colors/colors';
 
 export default function Login({ setLoggedIn, loggedIn }) {
 
@@ -59,11 +61,11 @@ export default function Login({ setLoggedIn, loggedIn }) {
 
                 <S.ButtonsContainer>
                     <button id="btn-1" onClick={() => setShowLogin(true)}
-                        style={{ backgroundColor: showLogin && '#006ED3', color: showLogin && '#fff' }}>
+                        style={{ backgroundColor: showLogin && `${darkBlue}`, color: showLogin && '#fff' }}>
                         ENTRAR
                     </button>
                     <button id="btn-2" onClick={() => setShowLogin(false)}
-                        style={{ backgroundColor: !showLogin && '#006ED3', color: !showLogin && '#fff' }}>
+                        style={{ backgroundColor: !showLogin && `${darkBlue}`, color: !showLogin && '#fff' }}>
                         CADASTRAR
                     </button>
                 </S.ButtonsContainer>

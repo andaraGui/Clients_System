@@ -58,7 +58,7 @@ export default function UserRow({ name, email, phone, id, setRefreshUsers }) {
                     <Button content={deleteIcon} color={'#FF5E5E'} buttonFunction={buttonDelete} />
                 </td>
             </S.RowContainer>
-            {showEditForm && <EditForm buttonEdit={buttonEdit} name={name} email={email} phone={phone} id={id} setRefreshUsers={setRefreshUsers} setShowEditForm={setShowEditForm} />}
+            {showEditForm && <EditForm id="editForm" buttonEdit={buttonEdit} name={name} email={email} phone={phone} id={id} setRefreshUsers={setRefreshUsers} setShowEditForm={setShowEditForm} />}
         </>
     );
 }

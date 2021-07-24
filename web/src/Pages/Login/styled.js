@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-
+import { darkBlue, lightBlue } from '../../Colors/colors';
 
 export const FormContainer = styled.div`
     width: 40%;
@@ -25,11 +25,11 @@ export const FormContainer = styled.div`
         border: none;
         cursor: pointer;
         background-color: white;
-        color: #3593EB;
+        color: ${lightBlue};
         font-family: 'Roboto', sans-serif;
 
         &:hover{
-            background-color: #006ED3 ;
+            background-color: ${darkBlue} ;
             color: white;
             transition: color .2s ease, background-color .2s ease ; ;
         }
@@ -78,7 +78,7 @@ export const ButtonsContainer = styled.div`
     button{
         padding: 10px;
         font-size: 13px;
-        background-color: #3593EB;
+        background-color: ${lightBlue};
         color: white;
         &:hover{
             background-color:white ;

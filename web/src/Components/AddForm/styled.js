@@ -1,10 +1,16 @@
 import styled from 'styled-components';
-
+import { darkBlue, lightBlue } from '../../Colors/colors';
 
 export const FormContainer = styled.div`
-    background-color: lightgray;
+    background-color: ${lightBlue};
+    display: flex;
+    flex-direction: column;
     width: 60%;
+    border-radius: 10px;
     margin: auto;
+    color: white;
+    font-family: 'roboto', sans-serif;
+    text-align: center;
     
     button{
         background-position: center;
@@ -20,9 +26,7 @@ export const FormContainer = styled.div`
             background-size: 14px;
         }
     }
-    span{
-        margin: 10px;
-    }
+
     form{
         display: flex;
         flex-direction: column;
@@ -32,8 +36,11 @@ export const FormContainer = styled.div`
 
     input{
         padding: 10px;
-        &:active{
-            border: none;
+        border-radius: 5px;
+        border: none;
+        margin: 20px;
+        &:focus{
+            outline: none;
         }
     }
 
