@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Redirect } from 'react-router-dom'
 import { apiUsers } from '../../services/api';
+import * as S from './styled';
 
 
 export default function Login({ setLoggedIn, loggedIn }) {
@@ -12,6 +13,8 @@ export default function Login({ setLoggedIn, loggedIn }) {
     const [registerName, setRegisterName] = useState('');
     const [registerEmail, setRegisterEmail] = useState('');
     const [registerPassword, setRegisterPassword] = useState('');
+
+    const [showLogin, setShowLogin] = useState(true);
 
     async function registerHandler(e) {
         e.preventDefault();
@@ -46,28 +49,53 @@ export default function Login({ setLoggedIn, loggedIn }) {
                 console.log(error)
                 alert(`Usuário e/ou senha inválido(s)`)
             })
-       
+
     }
 
     return (
-        <>
-            {loggedIn && <Redirect to="/" />}
-            <h3>Login</h3>
-            <form>
-                Login: <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-                Senha: <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-                <button onClick={loginHandler}>ENTRAR</button>
-            </form>
+        <S.Content>
+            <S.FormContainer>
+                {loggedIn && <Redirect to="/" />}
+
+                <S.ButtonsContainer>
+                    <button id="btn-1" onClick={() => setShowLogin(true)}
+                        style={{ backgroundColor: showLogin && '#006ED3', color: showLogin && '#fff' }}>
+                        ENTRAR
+                    </button>
+                    <button id="btn-2" onClick={() => setShowLogin(false)}
+                        style={{ backgroundColor: !showLogin && '#006ED3', color: !showLogin && '#fff' }}>
+                        CADASTRAR
+                    </button>
+                </S.ButtonsContainer>
+
+                {showLogin === true ?
+                    <>
+                        <h1>Login</h1>
+                        <form>
+                            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" />
+                            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Senha" />
+                            <button onClick={loginHandler}>ENTRAR</button>
+                            <span onClick={() => setShowLogin(false)}>Ainda não tem uma conta? Cadastre-se</span>
+                        </form>
+                    </>
+
+                    :
+                    <>
+                        <h1>Cadastro de usuário</h1>
+                        <form>
+                            <input type="text" value={registerName} onChange={(e) => setRegisterName(e.target.value)} placeholder="Nome" />
+                            <input type="email" value={registerEmail} onChange={(e) => setRegisterEmail(e.target.value)} placeholder="Email" />
+                            <input type="password" value={registerPassword} onChange={(e) => setRegisterPassword(e.target.value)} placeholder="Senha" />
+                            <button onClick={registerHandler}>CRIAR CONTA</button>
+                        </form>
+                    </>
+                }
 
 
-            <h3>Cadastro de usuário:</h3>
-            <form>
-                Nome: <input type="text" value={registerName} onChange={(e) => setRegisterName(e.target.value)} />
-                Login: <input type="email" value={registerEmail} onChange={(e) => setRegisterEmail(e.target.value)} />
-                Senha: <input type="password" value={registerPassword} onChange={(e) => setRegisterPassword(e.target.value)} />
-                <button onClick={registerHandler}>cadastrar</button>
-            </form>
-        </>
+
+
+            </S.FormContainer>
+        </S.Content>
     )
 
 }
