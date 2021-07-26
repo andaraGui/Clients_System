@@ -4,7 +4,6 @@ import { darkBlue, lightBlue } from '../../Colors/colors';
 export const FormContainer = styled.div`
     width: 40%;
     background-color: #00B2FF;
-    height: 600px;
     text-align: center;
     border-radius: 10px;
     font-family: 'Roboto', sans-serif;
@@ -19,7 +18,7 @@ export const FormContainer = styled.div`
     button{
         width: 84%;
         padding: 15px;
-        margin: auto;
+        margin: 10px auto;
         border-radius: 10px;
         font-size: 20px;
         border: none;
@@ -37,13 +36,12 @@ export const FormContainer = styled.div`
 
     input{
         width: 80%;
-        padding: 10px;
-        margin: auto;
+        margin: 5px auto;
         border-radius: 10px;
+        padding: 10px;
         border: none;
         font-size: 22px;
         color: gray;
-        margin-bottom: -25px;
 
         ::placeholder{
             color: lightgray;
@@ -55,18 +53,22 @@ export const FormContainer = styled.div`
     }
 
     h1{
-        margin-top: 40px;
         color: white;
     }
     
     span{
      color: lightgray;
      cursor: pointer;
+     margin: 10px auto;
     }
 
 `
 export const Content = styled.div`
+    height: 90vh;
+      width: 100%;
     display: flex;
+    justify-content: center;
+    align-items: center;
 `
 
 export const ButtonsContainer = styled.div`
@@ -74,7 +76,6 @@ export const ButtonsContainer = styled.div`
     display: flex;
     justify-content: space-around;
     margin: auto;
-    margin-top: 50px;
     button{
         padding: 10px;
         font-size: 13px;
