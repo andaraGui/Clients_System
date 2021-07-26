@@ -17,8 +17,13 @@ export const RowContainer = styled.tr`
             margin-left: 4px;
             margin-right: 4px;
         }
+        button{
+            margin: 10px;
+        }
+       
     }
 
+    
 `
 
 

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { darkBlue, lightBlue } from '../../Colors/colors';
+import { lightBlue } from '../../Colors/colors';
 
 export const FormContainer = styled.div`
     background-color: ${lightBlue};

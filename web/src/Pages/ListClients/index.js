@@ -46,8 +46,8 @@ export default function ListClients() {
 
     return (
         <S.MainContainer>
-            <h1>ListClients</h1>
-            <Link to='/add-user'> <button >ADDCLIENT</button></Link>
+            <Link to='/add-user'> <button >Adicionar cliente</button></Link>
+            <h1>Lista de Clientes</h1>
                 <S.UsersTable>
                     <thead>
                         <tr>

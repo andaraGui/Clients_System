@@ -8,14 +8,41 @@ export const MainContainer = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    button{
+        padding: 15px;
+        margin: 10px auto;
+        border-radius: 10px;
+        font-size: 20px;
+        border: none;
+        cursor: pointer;
+        background-color: ${lightBlue};
+        color: white;
+        font-family: 'Roboto', sans-serif;
+
+        &:hover{
+            background-color: ${darkBlue} ;
+            color: white;
+            transition: color .2s ease, background-color .2s ease ; ;
+        }
+        &:active{
+            border-radius: 8px;
+        }
+    }
+
+    h1{
+        color: ${lightBlue};
+        font-family: 'roboto';
+
+    }
 `
 
 
 export const UsersTable = styled.table`
     font-family: 'roboto', 'sans-serif';
     width: 90%;
-    border-collapse:collapse;
     margin: auto;
+    border-collapse:collapse;
+    
     tr{
         border: 2px solid ${lightBlue};
         #editForm{
