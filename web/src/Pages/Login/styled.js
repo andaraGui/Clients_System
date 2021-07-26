@@ -59,7 +59,6 @@ export const FormContainer = styled.div`
     span{
      color: lightgray;
      cursor: pointer;
-     margin: 10px auto;
     }
 
 `

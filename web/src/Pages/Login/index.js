@@ -128,7 +128,7 @@ export default function Login({ setLoggedIn, loggedIn }) {
                             <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" required />
                             <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Senha" required />
                             <button onClick={loginHandler}>ENTRAR</button>
-                            <span onClick={() => setShowLogin(false)}>Ainda não tem uma conta? Cadastre-se</span>
+                            <span style={{marginBottom: '10px'}} onClick={() => setShowLogin(false)}>Ainda não tem uma conta? Cadastre-se</span>
                         </form>
                     </>
 
@@ -139,8 +139,8 @@ export default function Login({ setLoggedIn, loggedIn }) {
                             <input type="text" value={registerName} onChange={(e) => setRegisterName(e.target.value)} placeholder="Nome" required />
                             <input type="email" value={registerEmail} onChange={(e) => setRegisterEmail(e.target.value)} placeholder="Email" required />
                             <input type="password" value={registerPassword} onChange={(e) => setRegisterPassword(e.target.value)} placeholder="Senha" required />
-                            {!numberInPassword && registerPassword.length > 0 && <span>* Senha deve conter ao menos 1 número</span>}
-                            {!passwordSize && registerPassword.length > 0 && <span>* Senha deve conter mais de 6 caracteres</span>}
+                            {!numberInPassword && registerPassword.length > 0 && <span style={{ color: 'red' }}>* Senha deve conter ao menos 1 número</span>}
+                            {!passwordSize && registerPassword.length > 0 && <span style={{ color: 'red' }}>* Senha deve conter mais de 6 caracteres</span>}
                             <button onClick={registerHandler}>CRIAR CONTA</button>
                         </form>
                     </>
